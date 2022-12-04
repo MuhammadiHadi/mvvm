@@ -4,7 +4,13 @@ class MainTextFiled extends StatelessWidget {
   String title;
   IconData? icon;
   FocusScope? focusScope;
-  MainTextFiled({Key? key, required this.title, this.focusScope, this.icon})
+  TextEditingController? controller;
+  MainTextFiled(
+      {Key? key,
+      required this.title,
+      this.focusScope,
+      this.icon,
+      this.controller})
       : super(key: key);
 
   @override
@@ -16,6 +22,7 @@ class MainTextFiled extends StatelessWidget {
           hintText: title,
           prefixIcon: Icon(icon),
         ),
+        controller: controller,
       ),
     );
   }

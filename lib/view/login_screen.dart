@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mvvm/resource/appColor/appColor.dart';
 import 'package:mvvm/resource/component/main_button.dart';
 import 'package:mvvm/resource/component/main_textfiled.dart';
-import 'package:mvvm/utils/utils/utils.dart';
+import 'package:mvvm/view_model/auth_view_model.dart';
+import 'package:provider/provider.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -12,8 +13,11 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final authsViewModel = Provider.of<AuthViewModel>(context);
     return Scaffold(
       body: ListView(
         children: [
@@ -24,14 +28,23 @@ class _LoginViewState extends State<LoginView> {
                 MainTextFiled(
                   title: 'Email',
                   icon: Icons.email_outlined,
+                  controller: _emailController,
                 ),
                 MainTextFiled(
                   title: 'Password',
                   icon: Icons.lock_open_outlined,
+                  controller: _passwordController,
                 ),
                 MainButton(
                   title: "LOGIN",
                   color: AppColors.green,
+                  onTop: () {
+                    Map data = {
+                      "email": _emailController.text.toString(),
+                      "password": _passwordController.text.toString(),
+                    };
+                    authsViewModel.Login(data, context);
+                  },
                 ),
               ],
             ),
