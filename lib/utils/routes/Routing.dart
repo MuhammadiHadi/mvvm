@@ -7,7 +7,7 @@ class Routing {
   static Route<dynamic>? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case AppRoutes.LoginScreen:
-        return MaterialPageRoute(builder: (_) => LoginScreen());
+        return MaterialPageRoute(builder: (_) => LoginView());
       case AppRoutes.HomeScreen:
         return MaterialPageRoute(builder: (_) => HomeScreen());
 
