@@ -11,18 +11,21 @@ class MainButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 45,
-      width: double.infinity,
-      margin: EdgeInsets.only(top: 40),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Center(
-        child: Text(
-          title,
-          style: TextStyle(color: AppColors.black),
+    return InkWell(
+      onTap: onTop,
+      child: Container(
+        height: 45,
+        width: double.infinity,
+        margin: EdgeInsets.only(top: 40),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Center(
+          child: Text(
+            title,
+            style: TextStyle(color: AppColors.black),
+          ),
         ),
       ),
     );

@@ -8,6 +8,7 @@ class Utils {
   }
 
   static toastMessage(String message) {
-    Fluttertoast.showToast(msg: message);
+    Fluttertoast.showToast(
+        msg: message, toastLength: Toast.LENGTH_LONG, webPosition: "top;");
   }
 }

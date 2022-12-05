@@ -10,44 +10,47 @@ import 'package:http/http.dart' as http;
 class NetworkApiServices extends BaseApiServices {
   @override
   Future getGetApiService(String url) async {
-    dynamic responsejson;
+    dynamic responseJson;
     try {
-      Response response =
+      final response =
           await http.get(Uri.parse(url)).timeout(Duration(seconds: 10));
 
-      return responsejson(response);
+      responseJson = returnResponse(response);
     } on SocketException {
-      throw FetchDataException("no internet connection");
+      throw FetchDataException('no internet connection');
     }
 
-    return responsejson;
+    return responseJson;
   }
 
   @override
   Future getPostApiService(String url, dynamic data) async {
-    dynamic responsejson;
+    dynamic responseJson;
     try {
       Response response =
           await post(Uri.parse(url), body: data).timeout(Duration(seconds: 10));
-      return responsejson(response);
+      responseJson = returnResponse(response);
     } on SocketException {
-      throw FetchDataException("no internet connection");
+      throw FetchDataException('no internet connection');
     }
+    return responseJson;
   }
 
   dynamic returnResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:
-        dynamic responsejson = jsonDecode(response.body);
-        return responsejson;
+        dynamic responseJson = jsonDecode(response.body);
+        return responseJson;
       case 400:
-        dynamic responsejson = jsonDecode(response.body);
-        return responsejson;
-      case 500:
-        dynamic responsejson = jsonDecode(response.body);
-        return responsejson;
+        throw BadRequestException(response.body.toString());
+
+      case 404:
+        throw UnauthorizedException(response.body.toString());
       default:
-        throw BadRequestException("Invalid request");
+        throw FetchDataException(
+            'Error accured while communicating with server' +
+                'with status code' +
+                response.statusCode.toString());
     }
   }
 }

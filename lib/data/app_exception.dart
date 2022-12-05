@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class AppException implements Exception {
   final _message;
   final _prefix;
@@ -12,17 +10,20 @@ class AppException implements Exception {
 }
 
 class FetchDataException extends AppException {
-  FetchDataException([String? message]) : super("Error during communication");
+  FetchDataException([String? message])
+      : super(message, 'Error during communication');
 }
 
 class BadRequestException extends AppException {
-  BadRequestException([String? message]) : super("Invalid request ");
+  BadRequestException([String? message]) : super(message, 'Invalid request');
 }
 
 class UnauthorizedException extends AppException {
-  UnauthorizedException([String? message]) : super("Unauthorized request");
+  UnauthorizedException([String? message])
+      : super(message, 'Unauthorized request');
 }
 
 class InvalidInputException extends AppException {
-  InvalidInputException([String? message]) : super("Invalid input Error");
+  InvalidInputException([String? message])
+      : super(message, 'Invalid input Error');
 }
