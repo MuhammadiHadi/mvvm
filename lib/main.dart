@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:mvvm/view/login_screen.dart';
+import 'package:mvvm/utils/routes/AppRoutes.dart';
+import 'package:mvvm/utils/routes/Routing.dart';
+
 import 'package:mvvm/view_model/auth_view_model.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -33,9 +36,8 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home: LoginView(),
-        // initialRoute: AppRoutes.LoginScreen,
-        //onGenerateRoute: Routing.generateRoute,
+        initialRoute: AppRoutes.LoginScreen,
+        onGenerateRoute: Routing.generateRoute,
       ),
     );
   }

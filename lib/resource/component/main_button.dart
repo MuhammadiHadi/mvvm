@@ -5,8 +5,10 @@ import '../appColor/appColor.dart';
 class MainButton extends StatelessWidget {
   String title;
   Color? color;
+  Color? textcolor;
   VoidCallback? onTop;
-  MainButton({Key? key, required this.title, this.color, this.onTop})
+  MainButton(
+      {Key? key, required this.title, this.color, this.onTop, this.textcolor})
       : super(key: key);
 
   @override
@@ -24,7 +26,7 @@ class MainButton extends StatelessWidget {
         child: Center(
           child: Text(
             title,
-            style: TextStyle(color: AppColors.black),
+            style: TextStyle(color: Colors.white),
           ),
         ),
       ),

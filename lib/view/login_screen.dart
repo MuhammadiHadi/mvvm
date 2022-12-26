@@ -15,6 +15,7 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final authsViewModel = Provider.of<AuthViewModel>(context);
@@ -37,7 +38,7 @@ class _LoginViewState extends State<LoginView> {
               ),
               MainButton(
                 title: "LOGIN",
-                color: AppColors.green,
+                color: AppColors.mainButton,
                 onTop: () {
                   Map data = {
                     'email': _emailController.text.toString(),
@@ -47,6 +48,21 @@ class _LoginViewState extends State<LoginView> {
                   print("api hit");
                 },
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, 'signup');
+                  },
+                  child: Text.rich(
+                      TextSpan(text: "Don't have an Account?", children: [
+                    TextSpan(
+                        text: " Signup",
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold))
+                  ])),
+                ),
+              )
             ],
           ),
         ),
